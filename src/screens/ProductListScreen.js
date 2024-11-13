@@ -2,21 +2,31 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 export default function ProductListScreen({ navigation }) {
+    const products = [
+        { name: "Mesa", description: "Una mesa de madera sólida y elegante." },
+        { name: "Silla", description: "Silla cómoda con soporte lumbar." },
+        { name: "Escritorio", description: "Escritorio amplio para trabajar." },
+        { name: "Lámpara", description: "Lámpara de mesa moderna." },
+    ];
+
     return (
         <View style={styles.container}>
-
             <ScrollView>
-                {["Mesa", "Silla", "Mesa", "Silla"].map((product, index) => (
-                    <View key={index} style={styles.productContainer}>
+                {products.map((product, index) => (
+                    <TouchableOpacity
+                        key={index}
+                        style={styles.productContainer}
+                        onPress={() => navigation.navigate('Product', { productName: product.name, productDescription: product.description })}
+                    >
                         <Image
                             style={styles.productImage}
                             source={{ uri: 'https://via.placeholder.com/150' }}
                         />
                         <View style={styles.productDetails}>
-                            <Text style={styles.productTitle}>{product}</Text>
-                            <Text style={styles.productDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+                            <Text style={styles.productTitle}>{product.name}</Text>
+                            <Text style={styles.productDescription}>{product.description}</Text>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 ))}
             </ScrollView>
         </View>
@@ -27,21 +37,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f5f5f5',
-    },
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 15,
-        backgroundColor: '#8fa6b2',
-    },
-    menuIcon: {
-        fontSize: 30,
-        marginRight: 10,
-    },
-    headerTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#fff',
     },
     productContainer: {
         flexDirection: 'row',

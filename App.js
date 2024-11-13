@@ -6,6 +6,7 @@ import { View, StyleSheet } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
 import AboutScreen from './src/screens/AboutScrenn';
 import ProductListScreen from './src/screens/ProductListScreen';
+import ProductScreen from './src/screens/ProductScreen'; // Importa ProductScreen
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -45,6 +46,11 @@ function App() {
           name="ProductList"
           component={ProductListScreen}
           options={{ headerTitle: 'Product List' }}
+        />
+        <Stack.Screen
+          name="Product" // Nombre de la nueva pantalla
+          component={ProductScreen} // Componente de la nueva pantalla
+          options={{ headerTitle: 'Product Details' }} // Título de la cabecera
         />
       </Stack.Navigator>
     </NavigationContainer>
